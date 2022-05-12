@@ -12,6 +12,7 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import DataObjects.Player;
@@ -24,6 +25,7 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
     TextView questionTextView;
     Button answerA, answerB, answerC, answerD;
     Button submitButton;
+    ProgressBar progressBar;
 
     int score = 0;
     int totalQuestions = QuestionAnswer.question.length;
@@ -76,6 +78,8 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
         answerC.setBackgroundColor(Color.WHITE);
         answerD.setBackgroundColor(Color.WHITE);
 
+        progressBar = findViewById(R.id.progressBar);
+
         Button clickedButton = (Button) view;
         if (clickedButton.getId()==R.id.submit_btn){
             if (selectedAnswer.equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
@@ -84,6 +88,7 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
                 player.setPlayerScore(score);
             }
             currentQuestionIndex++;
+            progressBar.incrementProgressBy(1);
             loadNewQuestion();
 
 
