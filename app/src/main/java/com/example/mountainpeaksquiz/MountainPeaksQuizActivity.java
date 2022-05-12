@@ -160,7 +160,7 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
     }
 
     void timesUp(){
-
+        playFailSong();
         new AlertDialog.Builder(this)
                 .setTitle("Провалихте се!")
                 .setMessage("Времето Ви изтече! Ще трябва да започнете отначало.")
@@ -172,6 +172,13 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
     void playVictorySong(){
         if (mediaPlayer == null){
             mediaPlayer = MediaPlayer.create(this, R.raw.song);
+        }
+        mediaPlayer.start();
+    }
+
+    void playFailSong(){
+        if (mediaPlayer==null){
+            mediaPlayer = MediaPlayer.create(this, R.raw.failsound);
         }
         mediaPlayer.start();
     }

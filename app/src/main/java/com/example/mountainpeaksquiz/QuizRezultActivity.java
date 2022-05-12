@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -91,6 +92,10 @@ public class QuizRezultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 writeToFile(userName, playerScore, QuizRezultActivity.this);
+                Toast.makeText(QuizRezultActivity.this,
+                                "Вашият резултат беше успешно запазен!",
+                                Toast.LENGTH_LONG)
+                        .show();
             }
         });
     }
