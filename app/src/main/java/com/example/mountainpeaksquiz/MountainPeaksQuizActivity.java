@@ -5,22 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.MediaParser;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.Random;
 
 import DataObjects.Player;
+import DataObjects.QuestionAnswer;
 
 public class MountainPeaksQuizActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -48,11 +48,11 @@ public class ShowPlayersResults extends AppCompatActivity {
             }
         });
 
-        readFormResultsFile(ShowPlayersResults.this);
+        readFromResultsFile(ShowPlayersResults.this);
 
     }
 
-    void readFormResultsFile(Context context) {
+    void readFromResultsFile(Context context) {
 
         linearLayout1 = findViewById(R.id.cardViewInfo);
 

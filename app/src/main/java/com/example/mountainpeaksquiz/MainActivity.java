@@ -1,11 +1,13 @@
 package com.example.mountainpeaksquiz;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ViewUtils;
 import androidx.core.app.NotificationChannelCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity{
     private EditText name;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +44,11 @@ public class MainActivity extends AppCompatActivity{
         name = findViewById(R.id.et_name);
 
 
-        addNotification();
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMountainPeaksQuizActivity(name.getText().toString());
+                addNotification();
             }
         });
 
@@ -62,28 +64,33 @@ public class MainActivity extends AppCompatActivity{
             this.startActivity(new Intent(this, MainActivity.class));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void addNotification() {
-        // Builds your notification
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.img)
-                .setContentTitle("John's Android Studio Tutorials")
-                .setContentText("A video has just arrived!");
 
-        // Creates the intent needed to show the notification
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(contentIntent);
 
-        // Add as notification
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0, builder.build());
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, String.valueOf(MainActivity.class))
+                .setSmallIcon(R.drawable.twittericon)
+                .setContentTitle("Подсещане!")
+                .setContentText("Не забравяй да публикуваш резултата си след като приключиш куиза!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+        notificationManager.notify(1, builder.build());
     }
+
 
     public void openMountainPeaksQuizActivity(String userName){
         if (userName.isEmpty()){
             new AlertDialog.Builder(this)
                 .setTitle("Грешка!")
-                .setMessage("Моля въведете име за да зпочнете играта.")
+                .setMessage("Моля въведете име за да започнете играта.")
                 .setPositiveButton("Започни отначло", (dialogInterface, i) -> restartQuiz() )
                 .setCancelable(false)
                 .show();

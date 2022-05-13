@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+
+import DataObjects.QuestionAnswer;
+
 public class QuizRezultActivity extends AppCompatActivity {
 
     int totalQuestions = 7;
