@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,101 +7,96 @@
     tools:context=".MountainPeaksQuizActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/total_question"
-        android:text="Total Questions "
-        android:layout_centerHorizontal="true"
-        android:textSize="20dp"/>
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/timer"
-        tools:text="01:00"
-        android:textSize="30dp"
-        android:layout_below="@id/total_question"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="275dp"
-        android:textStyle="bold"
-        android:textColor="@color/black" />
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_question"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:text="01:00" />
+
+    <TextView
+        android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/question"
-        android:textStyle="bold"
-        android:text="This will be the question"
-        android:textColor="@color/black"
-        android:textSize="28dp"
-        android:textAlignment="center"
+        android:layout_above="@id/progressBar"
         android:layout_margin="10dp"
-        android:layout_above="@id/progressBar"/>
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
-    <ProgressBar android:id="@+id/progressBar"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="1000dp"
         android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:max="7"
-        android:progress="0"
-        android:indeterminate="false"
         android:layout_above="@id/choices_layout"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:indeterminate="false"
+        android:max="7"
+        android:progress="0" />
 
     <LinearLayout
+        android:id="@+id/choices_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/choices_layout"
         android:layout_centerInParent="true"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/ans_A"
-            android:layout_margin="5dp"
-            android:background="@color/white"
-            android:alpha="0.60"
-            android:text="Ans A"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="@color/black"/>
-
-        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:alpha="0.60"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ans_B"
-            android:layout_margin="5dp"
-            android:background="@color/white"
-            android:alpha="0.60"
-            android:text="Ans B"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="@color/black"/>
-
-        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:alpha="0.60"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/ans_C"
-            android:layout_margin="5dp"
-            android:background="@color/white"
-            android:alpha="0.60"
-            android:text="Ans C"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="@color/black"/>
-
-        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ans_D"
             android:layout_margin="5dp"
-            android:background="@color/white"
             android:alpha="0.60"
-            android:text="Ans D"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:textColor="@color/black"/>
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ans_D"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:alpha="0.60"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -117,8 +111,8 @@
         android:layout_marginBottom="40dp"
         android:alpha="0.60"
         android:background="@color/white"
-        android:text="Избери"
-        android:textSize="17dp"
+        android:text="@string/selectButton"
+        android:textSize="17sp"
         android:textStyle="bold" />
 
 

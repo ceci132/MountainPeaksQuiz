@@ -1,7 +1,5 @@
 package DataObjects;
 
-import com.example.mountainpeaksquiz.MainActivity;
-
 public class Player {
 
     private String userName;

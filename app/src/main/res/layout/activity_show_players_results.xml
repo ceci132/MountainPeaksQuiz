@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    tools:context=".QuizRezultActivity"
+    tools:context=".QuizResultActivity"
     android:orientation="vertical"
-    android:background="@drawable/loginpicture"
+    android:background="@drawable/login_picture"
     android:gravity="center"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -14,15 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Резултати:"
+            android:text="@string/leaderboard"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textStyle="bold"
-            android:layout_marginLeft="135dp"/>
+            android:layout_marginStart="135dp"/>
 
         <androidx.cardview.widget.CardView android:id="@+id/cv_main"
             android:background="@android:color/white"
@@ -45,10 +46,10 @@
         <androidx.appcompat.widget.AppCompatButton android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="275dp"
-            android:text="Назад"
+            android:layout_marginStart="275dp"
+            android:text="@string/backButton"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:alpha="0.60"/>
     </LinearLayout>

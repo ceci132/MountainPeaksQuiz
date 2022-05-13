@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MountainPeaksQuiz</string>
+    <string name="title">Добре дошли</string>
+    <string name="description">Моля въведете вашето име.</string>
+    <string name="hint">Име</string>
+    <string name="startButton">Започни нова игра</string>
+    <string name="resultsButton">Покажи резултатите</string>
+    <string name="resultsTitle">Верни Отговори:</string>
+    <string name="totalQuestions">Total questions: %1$d</string>
+    <string name="selectButton">Избери</string>
+    <string name="leaderboard">Резултати:</string>
+    <string name="backButton">Назад</string>
+    <string name="twitterButton">Сподели резултата си в Twitter!</string>
 </resources>

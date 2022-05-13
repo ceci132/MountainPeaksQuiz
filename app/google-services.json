@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "334953053003",
+    "project_id": "mountainquiz-3f8ed",
+    "storage_bucket": "mountainquiz-3f8ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334953053003:android:6961e575391596817ac6ce",
+        "android_client_info": {
+          "package_name": "com.example.mountainpeaksquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334953053003-vo33voo7n4l03jpots7e8774nn0tiksg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzowLPdaiv3sya9hn9q7NUWgPeO8Jbk18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334953053003-vo33voo7n4l03jpots7e8774nn0tiksg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

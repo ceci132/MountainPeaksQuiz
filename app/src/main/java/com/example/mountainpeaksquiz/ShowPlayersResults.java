@@ -1,27 +1,18 @@
 package com.example.mountainpeaksquiz;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 
 public class ShowPlayersResults extends AppCompatActivity {
 
@@ -41,25 +32,19 @@ public class ShowPlayersResults extends AppCompatActivity {
 
         button = findViewById(R.id.backButton);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openMainActivity();
-            }
-        });
+        button.setOnClickListener(v -> openMainActivity());
 
-        readFromResultsFile(ShowPlayersResults.this);
-
+        readFromResultsFile();
     }
 
-    void readFromResultsFile(Context context) {
+    void readFromResultsFile() {
 
         linearLayout1 = findViewById(R.id.cardViewInfo);
 
         try (BufferedReader input = new BufferedReader(new InputStreamReader(openFileInput("PlayerResult.txt")))) {
             String st;
 
-            while ((st= input.readLine()) != null){
+            while ((st = input.readLine()) != null) {
 
                 TextView textView = new TextView(this);
                 textView.setText(st);
@@ -67,11 +52,11 @@ public class ShowPlayersResults extends AppCompatActivity {
                 linearLayout1.addView(textView);
             }
         } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
+            Log.e("Exception", "File write failed: " + e);
         }
     }
 
-    public void openMainActivity(){
+    public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
