@@ -84,7 +84,6 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
         if (clickedButton.getId()==R.id.submit_btn){
             if (selectedAnswer.equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
                 score++;
-
                 player.setPlayerScore(score);
             }
             currentQuestionIndex++;

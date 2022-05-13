@@ -7,7 +7,9 @@ import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
@@ -48,6 +50,10 @@ public class QuizRezultActivity extends AppCompatActivity {
         String userName = intent.getStringExtra("key");
         int playerScore = intent.getIntExtra("score", 0);
 
+        Toast.makeText(QuizRezultActivity.this,
+                        "Поздравления " + userName + "! Ти отбеляза " + playerScore + " точки.",
+                        Toast.LENGTH_LONG)
+                .show();
 
         linearLayout = findViewById(R.id.info);
         linearLayout1 = findViewById(R.id.cardViewInfo);
@@ -81,6 +87,10 @@ public class QuizRezultActivity extends AppCompatActivity {
         returnToMenu.setText("Започни нова игра!");
         linearLayout.addView(returnToMenu);
 
+        Button postTweet = new Button(this);
+        postTweet.setText("Сподели резултата си в Twitter!");
+        linearLayout.addView(postTweet);
+
         returnToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +106,13 @@ public class QuizRezultActivity extends AppCompatActivity {
                                 "Вашият резултат беше успешно запазен!",
                                 Toast.LENGTH_LONG)
                         .show();
+            }
+        });
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTwitter(QuizRezultActivity.this, userName, playerScore);
             }
         });
     }
@@ -122,5 +139,23 @@ public class QuizRezultActivity extends AppCompatActivity {
             Log.e("Exception", "File write failed: " + e.toString());
         }
 
+    }
+
+    void startTwitter(Context context, String name, int score) {
+        final String message = "https://twitter.com/compose/tweet?text=" +
+                name + " отговори вярно на " + score + " въпроса";
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(message));
+        try {
+            context.getPackageManager().getPackageInfo("com.twitter.android", 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            try {
+                context.getPackageManager().getPackageInfo("com.twitter.android.lite", 0);
+            } catch (PackageManager.NameNotFoundException e1){
+                // do nothing and open a browser
+            }
+
+        }
+        context.startActivity(intent);
     }
 }

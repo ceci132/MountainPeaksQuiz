@@ -2,10 +2,19 @@ package com.example.mountainpeaksquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ViewUtils;
+import androidx.core.app.NotificationChannelCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -32,6 +41,8 @@ public class MainActivity extends AppCompatActivity{
         name = findViewById(R.id.et_name);
 
 
+        addNotification();
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +62,22 @@ public class MainActivity extends AppCompatActivity{
             this.startActivity(new Intent(this, MainActivity.class));
     }
 
+    private void addNotification() {
+        // Builds your notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.img)
+                .setContentTitle("John's Android Studio Tutorials")
+                .setContentText("A video has just arrived!");
+
+        // Creates the intent needed to show the notification
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
+    }
 
     public void openMountainPeaksQuizActivity(String userName){
         if (userName.isEmpty()){
