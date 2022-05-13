@@ -11,9 +11,14 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Random;
 
 import DataObjects.Player;
 
@@ -28,9 +33,12 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
     ProgressBar progressBar;
 
     int score = 0;
-    int totalQuestions = QuestionAnswer.question.length;
-    int currentQuestionIndex = 0;
+    int totalQuestions = 7;
+    int currentQuestionIndex;
     String selectedAnswer = "";
+    int counter = 0;
+
+    static int questionsArray[] = new int[8];
 
     private TextView countDownText;
     private CountDownTimer countDownTimer;
@@ -66,8 +74,11 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
 
         totalQuestionsTextView.setText("Total questions : " +totalQuestions);
 
+        currentQuestionIndex = generateRandomIndex();
+        questionsArray[counter] = currentQuestionIndex;
+        counter++;
         loadNewQuestion();
-        startTimer();
+        //startTimer();
     }
 
     @Override
@@ -81,13 +92,19 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
         progressBar = findViewById(R.id.progressBar);
 
         Button clickedButton = (Button) view;
+
+
         if (clickedButton.getId()==R.id.submit_btn){
             if (selectedAnswer.equals(QuestionAnswer.correctAnswers[currentQuestionIndex])){
                 score++;
                 player.setPlayerScore(score);
             }
-            currentQuestionIndex++;
+
+            currentQuestionIndex = generateRandomIndex();
+            questionsArray[counter] = currentQuestionIndex;
             progressBar.incrementProgressBy(1);
+            counter++;
+
             loadNewQuestion();
 
 
@@ -99,19 +116,22 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
 
     void loadNewQuestion(){
 
-        if(currentQuestionIndex == totalQuestions){
+        if(counter == 8 ) {
             playVictorySong();
             finishQuiz();
+            counter = 0;
             return;
 
         }
-
         questionTextView.setText(QuestionAnswer.question[currentQuestionIndex]);
         answerA.setText(QuestionAnswer.choices[currentQuestionIndex][0]);
         answerB.setText(QuestionAnswer.choices[currentQuestionIndex][1]);
         answerC.setText(QuestionAnswer.choices[currentQuestionIndex][2]);
         answerD.setText(QuestionAnswer.choices[currentQuestionIndex][3]);
+
     }
+
+
 
     void finishQuiz(){
         Intent intent = new Intent(this, QuizRezultActivity.class);
@@ -181,4 +201,14 @@ public class MountainPeaksQuizActivity extends AppCompatActivity implements View
         }
         mediaPlayer.start();
     }
+
+    private int generateRandomIndex(){
+        Random random = new Random();
+
+        int result = random.nextInt(QuestionAnswer.question.length);
+
+        return result;
+    }
+
+
 }

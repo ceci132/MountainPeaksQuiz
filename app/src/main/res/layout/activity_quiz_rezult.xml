@@ -23,7 +23,6 @@
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold" />
-
     <androidx.cardview.widget.CardView
         android:background="@android:color/white"
         android:layout_height="wrap_content"

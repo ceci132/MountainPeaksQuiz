@@ -1,44 +1,28 @@
 package com.example.mountainpeaksquiz;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
-import android.app.ActionBar;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-
-import DataObjects.Player;
-
 public class QuizRezultActivity extends AppCompatActivity {
+
+    int totalQuestions = 7;
 
     LinearLayout linearLayout1;
     LinearLayout linearLayout;
-
-    Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +49,15 @@ public class QuizRezultActivity extends AppCompatActivity {
 
         params.setMargins(20,20,20,20);
 
-        for (int i = 0; i < QuestionAnswer.question.length ; i++) {
+        for (int i = 0; i < totalQuestions ; i++) {
 
             TextView textView = new TextView(this);
-            textView.setText(QuestionAnswer.question[i]);
+            textView.setText(QuestionAnswer.question[MountainPeaksQuizActivity.questionsArray[i]]);
             textView.setLayoutParams(params);
             linearLayout1.addView(textView);
 
             TextView textView1 = new TextView(this);
-            textView1.setText(QuestionAnswer.correctAnswers[i]);
+            textView1.setText(QuestionAnswer.correctAnswers[MountainPeaksQuizActivity.questionsArray[i]]);
             textView1.setLayoutParams(params);
             linearLayout1.addView(textView1);
 
@@ -101,7 +85,7 @@ public class QuizRezultActivity extends AppCompatActivity {
         saveResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                writeToFile(userName, playerScore, QuizRezultActivity.this);
+                writeToFile(userName, playerScore);
                 Toast.makeText(QuizRezultActivity.this,
                                 "Вашият резултат беше успешно запазен!",
                                 Toast.LENGTH_LONG)
@@ -123,11 +107,7 @@ public class QuizRezultActivity extends AppCompatActivity {
             startActivity(intent);
     }
 
-    private void writeToFile (String name, int score, Context context) {
-
-        String dirPath = context.getFilesDir().getAbsolutePath();
-        String filePath = dirPath + "/PlayerResult";
-        File resultsFile = new File("/storage/sdcard0/file.txt");
+    private void writeToFile (String name, int score) {
 
         try (OutputStreamWriter output = new OutputStreamWriter(openFileOutput("PlayerResult.txt", MODE_APPEND))) {
             output.write(name);
@@ -136,7 +116,7 @@ public class QuizRezultActivity extends AppCompatActivity {
             output.write("\n");
             output.flush();
         } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
+            Log.e("Exception", "File write failed: " + e);
         }
 
     }
