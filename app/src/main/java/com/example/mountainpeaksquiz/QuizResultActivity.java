@@ -85,7 +85,7 @@ public class QuizResultActivity extends AppCompatActivity {
                     .show();
         });
 
-        linearLayout.setOnClickListener(v -> startTwitter(QuizResultActivity.this, userName, playerScore));
+        postTweet.setOnClickListener(v -> startTwitter(QuizResultActivity.this, userName, playerScore));
     }
 
     public void openMainActivity() {
